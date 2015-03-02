@@ -48,7 +48,7 @@ else{\
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
     imagePicker.delegate = self;
     imagePicker.allowsEditing = YES;
-#warning imagePicker.sourceType的默认值是相册
+#warning imagePicker.sourceType的默认值是0（UIImagePickerControllerSourceTypePhotoLibrary）
     NSLog(@"%d",imagePicker.sourceType);
     
     switch (buttonIndex) {
