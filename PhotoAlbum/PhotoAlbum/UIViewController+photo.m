@@ -16,6 +16,7 @@ __picker.sourceType = __sourceType;\
 }\
 else{\
     NSLog(@"error");\
+    return;\
 }
 @implementation UIViewController (photo)
 - (void)showPhotoChooseActionSheetInView:(UIView*)view{

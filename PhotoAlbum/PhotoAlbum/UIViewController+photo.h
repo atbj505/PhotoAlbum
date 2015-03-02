@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ViewController.h"
 
 @interface UIViewController (photo)<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 /**
