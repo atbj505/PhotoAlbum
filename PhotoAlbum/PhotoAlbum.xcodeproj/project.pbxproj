@@ -13,6 +13,7 @@
 		57B6C4351AA3FFA60055EDCA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57B6C4341AA3FFA60055EDCA /* Images.xcassets */; };
 		57B6C4441AA3FFA60055EDCA /* PhotoAlbumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B6C4431AA3FFA60055EDCA /* PhotoAlbumTests.m */; };
 		57B6C4501AA400930055EDCA /* UIViewController+photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B6C44F1AA400930055EDCA /* UIViewController+photo.m */; };
+		57B6C4CD1AA45AA20055EDCA /* photoLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B6C4CC1AA45AA20055EDCA /* photoLibrary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		57B6C44D1AA3FFD40055EDCA /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		57B6C44E1AA400930055EDCA /* UIViewController+photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+photo.h"; sourceTree = "<group>"; };
 		57B6C44F1AA400930055EDCA /* UIViewController+photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+photo.m"; sourceTree = "<group>"; };
+		57B6C4CB1AA45AA20055EDCA /* photoLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoLibrary.h; sourceTree = "<group>"; };
+		57B6C4CC1AA45AA20055EDCA /* photoLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photoLibrary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,8 @@
 				57B6C42F1AA3FFA60055EDCA /* ViewController.m */,
 				57B6C44E1AA400930055EDCA /* UIViewController+photo.h */,
 				57B6C44F1AA400930055EDCA /* UIViewController+photo.m */,
+				57B6C4CB1AA45AA20055EDCA /* photoLibrary.h */,
+				57B6C4CC1AA45AA20055EDCA /* photoLibrary.m */,
 				57B6C4341AA3FFA60055EDCA /* Images.xcassets */,
 				57B6C4271AA3FFA60055EDCA /* Supporting Files */,
 			);
@@ -219,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57B6C4301AA3FFA60055EDCA /* ViewController.m in Sources */,
+				57B6C4CD1AA45AA20055EDCA /* photoLibrary.m in Sources */,
 				57B6C4501AA400930055EDCA /* UIViewController+photo.m in Sources */,
 				57B6C42D1AA3FFA60055EDCA /* AppDelegate.m in Sources */,
 				57B6C42A1AA3FFA60055EDCA /* main.m in Sources */,
@@ -399,6 +405,7 @@
 				57B6C4491AA3FFA60055EDCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		57B6C44A1AA3FFA60055EDCA /* Build configuration list for PBXNativeTarget "PhotoAlbumTests" */ = {
 			isa = XCConfigurationList;
@@ -407,6 +414,7 @@
 				57B6C44C1AA3FFA60055EDCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
