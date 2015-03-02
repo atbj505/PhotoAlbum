@@ -8,8 +8,9 @@
 
 #import "ViewController.h"
 #import "UIViewController+photo.h"
+#import "photoLibrary.h"
 
-@interface ViewController ()
+@interface ViewController ()<photoLibraryDelegate>
 
 @end
 
@@ -25,8 +26,12 @@
     // Dispose of any resources that can be recreated.
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self showPhotoChooseActionSheetInView:self.view];
+    // 方法1:UIViewController+photo
+    //[self showPhotoChooseActionSheetInView:self.view];
+    // 方法2:photoLibrary
+    [[photoLibrary sharephotoLibrary]getPhotoLibraryInSuperViewController:self];
 }
+#warning 方法1
 #pragma mark -
 #pragma mark UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -35,9 +40,16 @@
 #pragma mark -
 #pragma mark ChoosePhoto 相册选择回调
 
-- (void)photoChoose:(UIImagePickerController *)picker originalImage:(UIImage *)originalImage editedImage:(UIImage *)editedImage
-{
+- (void)photoChoose:(UIImagePickerController *)picker originalImage:(UIImage *)originalImage editedImage:(UIImage *)editedImage{
     NSLog(@"original:%@",originalImage);
     NSLog(@"editedImage:%@",editedImage);
+}
+
+#warning 方法2
+- (void)getPhotoSucceedInfo:(NSDictionary *)info{
+    NSLog(@"%@",info);
+}
+- (void)getPhotoFailedInfo:(NSDictionary *)info{
+    NSLog(@"%@",info);
 }
 @end

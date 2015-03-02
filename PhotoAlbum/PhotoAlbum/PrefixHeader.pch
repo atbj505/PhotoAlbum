@@ -16,5 +16,29 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
+//* 单例interface
+#define CLASS_SINGLETON_INTERFACE(classname)                            \
+\
++ (classname *)share##classname;
+
+
+//* 单例implementation
+#define CLASS_SINGLETON_IMPLEMENTATION(classname)                       \
+static classname* shared##classname = nil;                              \
+\
++ (classname *)share##classname                                         \
+{                                                                       \
+@synchronized(self)                                                     \
+{                                                                       \
+if (shared##classname == nil)                                           \
+{                                                                       \
+shared##classname = [[self alloc] init];                                \
+}                                                                       \
+}                                                                       \
+return shared##classname;                                               \
+}                                                                       \
+
+
+
 #endif
 #endif
