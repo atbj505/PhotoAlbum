@@ -19,20 +19,44 @@ NSDictionary *dic = @{@"error":@"hardware error"};\
 return;\
 }
 
-@implementation photoLibrary
+@implementation photoLibrary{
+    UIViewController *_vc;
+}
 
 CLASS_SINGLETON_IMPLEMENTATION(photoLibrary)
 
+//- (void)getPhotoLibraryInSuperViewController:(UIViewController*)viewController{
+//    UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
+//    imagePicker.delegate = self;
+//    self.delegate = (id)viewController;
+//    
+//    SET_PICKER_SOURCE_TYPE(imagePicker, UIImagePickerControllerSourceTypePhotoLibrary);
+//    
+//    [viewController presentViewController:imagePicker animated:YES completion:nil];
+//}
 - (void)getPhotoLibraryInSuperViewController:(UIViewController*)viewController{
+    self.delegate = (id)viewController;
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相机",@"相册", nil];
+    [actionSheet showInView:viewController.view];
+    _vc = viewController;
+}
+#pragma mark -
+#pragma mark UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
     imagePicker.delegate = self;
-    self.delegate = viewController;
-    
-    SET_PICKER_SOURCE_TYPE(imagePicker, UIImagePickerControllerSourceTypePhotoLibrary);
-    
-    [viewController presentViewController:imagePicker animated:YES completion:nil];
+    switch (buttonIndex) {
+        case 0:
+            SET_PICKER_SOURCE_TYPE(imagePicker, UIImagePickerControllerSourceTypeCamera);
+            break;
+        case 1:
+            SET_PICKER_SOURCE_TYPE(imagePicker, UIImagePickerControllerSourceTypePhotoLibrary);
+            break;
+        default:
+            break;
+    }
+    [_vc presentViewController:imagePicker animated:YES completion:nil];
 }
-
 #pragma mark -
 #pragma mark UIImagePickerControllerDelegate
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
