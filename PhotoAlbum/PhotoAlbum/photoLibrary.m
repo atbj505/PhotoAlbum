@@ -37,11 +37,16 @@ CLASS_SINGLETON_IMPLEMENTATION(photoLibrary)
 - (void)getPhotoLibraryInSuperViewController:(UIViewController*)viewController{
     self.delegate = (id)viewController;
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相机",@"相册", nil];
+    //actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     [actionSheet showInView:viewController.view];
     _vc = viewController;
 }
 #pragma mark -
 #pragma mark UIActionSheetDelegate
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet{
+    NSLog(@"%@",actionSheet.subviews);
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
     imagePicker.delegate = self;

@@ -26,7 +26,7 @@
 
 @end
 
-@interface photoLibrary : NSObject<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface photoLibrary : NSObject<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>
 
 @property (nonatomic, weak)id<photoLibraryDelegate>delegate;
 
