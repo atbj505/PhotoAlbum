@@ -53,7 +53,7 @@ CLASS_SINGLETON_IMPLEMENTATION(photoLibrary)
             SET_PICKER_SOURCE_TYPE(imagePicker, UIImagePickerControllerSourceTypePhotoLibrary);
             break;
         default:
-            break;
+            return;
     }
     [_vc presentViewController:imagePicker animated:YES completion:nil];
 }
