@@ -13,7 +13,6 @@ if ([UIImagePickerController isSourceTypeAvailable:__sourceType]) {\
 __picker.sourceType = __sourceType;\
 }\
 else{\
-NSLog(@"error");\
 NSDictionary *dic = @{@"error":@"hardware error"};\
 [self.delegate getPhotoFailedInfo:dic];\
 return;\
@@ -50,6 +49,7 @@ CLASS_SINGLETON_IMPLEMENTATION(photoLibrary)
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
     imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
     switch (buttonIndex) {
         case 0:
             SET_PICKER_SOURCE_TYPE(imagePicker, UIImagePickerControllerSourceTypeCamera);
@@ -65,7 +65,12 @@ CLASS_SINGLETON_IMPLEMENTATION(photoLibrary)
 #pragma mark -
 #pragma mark UIImagePickerControllerDelegate
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    [self.delegate getPhotoSucceedInfo:info];
+    // 原图
+    UIImage *originalImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    
+    // 编辑图
+    UIImage *editedImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    [self.delegate getPhotoSucceedOriginalImage:originalImage editedImage:editedImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 @end

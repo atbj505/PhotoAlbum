@@ -13,9 +13,10 @@
 /**
  *  获取照片成功回调
  *
- *  @param info 回调返回数据字典
+ *  @param originalImage 原始图片
+ *  @param editedImage   编辑后图片
  */
-- (void)getPhotoSucceedInfo:(NSDictionary *)info;
+- (void)getPhotoSucceedOriginalImage:(UIImage *)originalImage editedImage:(UIImage *)editedImage;
 
 /**
  *  获取图片失败回调

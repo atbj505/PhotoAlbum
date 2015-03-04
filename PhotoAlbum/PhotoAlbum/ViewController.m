@@ -46,8 +46,9 @@
 }
 
 #warning 方法2
-- (void)getPhotoSucceedInfo:(NSDictionary *)info{
-    NSLog(@"%@",info);
+- (void)getPhotoSucceedOriginalImage:(UIImage *)originalImage editedImage:(UIImage *)editedImage{
+    NSLog(@"%@",originalImage);
+    NSLog(@"%@",editedImage);
 }
 - (void)getPhotoFailedInfo:(NSDictionary *)info{
     NSLog(@"%@",info);
