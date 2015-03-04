@@ -36,8 +36,8 @@ CLASS_SINGLETON_IMPLEMENTATION(photoLibrary)
 - (void)getPhotoLibraryInSuperViewController:(UIViewController*)viewController{
     self.delegate = (id)viewController;
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相机",@"相册", nil];
-    //actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     [actionSheet showInView:viewController.view];
+    
     _vc = viewController;
 }
 #pragma mark -
@@ -67,9 +67,9 @@ CLASS_SINGLETON_IMPLEMENTATION(photoLibrary)
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     // 原图
     UIImage *originalImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-    
     // 编辑图
     UIImage *editedImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    
     [self.delegate getPhotoSucceedOriginalImage:originalImage editedImage:editedImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
