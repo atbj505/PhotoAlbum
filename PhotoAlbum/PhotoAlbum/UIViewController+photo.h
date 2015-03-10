@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface UIViewController (photo)<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+
 /**
  *  选择器展示页面
  *
  *  @param view 父视图
  */
 - (void)showPhotoChooseActionSheetInView:(UIView*)view;
+
 /**
  *  ActionSheet点击选择相册或拍照后调用
  *
@@ -23,4 +25,5 @@
  */
 - (void)photoChooseWithActionSheet:(UIActionSheet *)actionSheet
               clickedButtonAtIndex:(NSInteger)buttonIndex;
+
 @end

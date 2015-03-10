@@ -18,7 +18,14 @@ else{\
     NSLog(@"error");\
     return;\
 }
+
 @implementation UIViewController (photo)
+
+/**
+ *  选择器展示页面
+ *
+ *  @param view 父视图
+ */
 - (void)showPhotoChooseActionSheetInView:(UIView*)view{
     UIActionSheet *action = [[UIActionSheet alloc]initWithTitle:nil
                                                        delegate:self
@@ -28,14 +35,13 @@ else{\
     action.tag = CHOOSE_PHOTO_SHEET_TAG;
     [action showInView:view];
 }
-#pragma mark -
-#pragma mark UIActionSheetDelegate
-- (void)willPresentActionSheet:(UIActionSheet *)actionSheet{
-    for (UIView *view in actionSheet.subviews) {
-        UIButton *button = (UIButton *)view;
-        button.tintColor = [UIColor blackColor];
-    }
-}
+
+/**
+ *  ActionSheet点击选择相册或拍照后调用
+ *
+ *  @param actionSheet ActionSheet
+ *  @param buttonIndex 点击按钮
+ */
 - (void)photoChooseWithActionSheet:(UIActionSheet *)actionSheet
               clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (actionSheet.tag != CHOOSE_PHOTO_SHEET_TAG) {
@@ -45,10 +51,10 @@ else{\
         NSLog(@"取消");
         return;
     }
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     imagePicker.allowsEditing = YES;
-#warning imagePicker.sourceType的默认值是0（UIImagePickerControllerSourceTypePhotoLibrary）
+    //imagePicker.sourceType的默认值是0（UIImagePickerControllerSourceTypePhotoLibrary）
     NSLog(@"%d",imagePicker.sourceType);
     
     switch (buttonIndex) {
@@ -63,9 +69,18 @@ else{\
     }
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet{
+    for (UIView *view in actionSheet.subviews) {
+        UIButton *button = (UIButton *)view;
+        button.tintColor = [UIColor blackColor];
+    }
+}
+
 #pragma mark -
 #pragma mark UIImagePickerControllerDelegate
-
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     // 原图
     UIImage *originalImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
@@ -82,4 +97,5 @@ else{\
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end

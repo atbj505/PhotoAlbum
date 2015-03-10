@@ -10,7 +10,7 @@
 #import "UIViewController+photo.h"
 #import "photoLibrary.h"
 
-@interface ViewController ()<photoLibraryDelegate>
+@interface ViewController () <photoLibraryDelegate>
 
 @end
 
@@ -29,15 +29,13 @@
     // 方法1:UIViewController+photo
     //[self showPhotoChooseActionSheetInView:self.view];
     // 方法2:photoLibrary
-    [[photoLibrary sharephotoLibrary]getPhotoLibraryInSuperViewController:self];
+    [[photoLibrary sharephotoLibrary] getPhotoLibraryInSuperViewController:self];
 }
-#warning 方法1
 #pragma mark -
-#pragma mark UIActionSheetDelegate
+#pragma mark 方法1UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     [self photoChooseWithActionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
 }
-#pragma mark -
 #pragma mark ChoosePhoto 相册选择回调
 
 - (void)photoChoose:(UIImagePickerController *)picker originalImage:(UIImage *)originalImage editedImage:(UIImage *)editedImage{
@@ -45,7 +43,8 @@
     NSLog(@"editedImage:%@",editedImage);
 }
 
-#warning 方法2
+#pragma mark -
+#pragma mark 方法2
 - (void)getPhotoSucceedOriginalImage:(UIImage *)originalImage editedImage:(UIImage *)editedImage{
     NSLog(@"%@",originalImage);
     NSLog(@"%@",editedImage);

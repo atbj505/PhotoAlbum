@@ -8,34 +8,41 @@
 
 #import "photoLibrary.h"
 
-#define SET_PICKER_SOURCE_TYPE(__picker, __sourceType) \
-if ([UIImagePickerController isSourceTypeAvailable:__sourceType]) {\
-__picker.sourceType = __sourceType;\
-}\
-else{\
-NSDictionary *dic = @{@"error":@"hardware error"};\
-[self.delegate getPhotoFailedInfo:dic];\
-return;\
+@interface photoLibrary()
+
+@property (nonatomic, strong) UIViewController *vc;
+
+@end
+
+@implementation photoLibrary
+
+static photoLibrary *sharedPhotoLibrary;
+
+/**
+ *  单例方法
+ *
+ *  @return 实例变量
+ */
++ (photoLibrary *)sharephotoLibrary{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedPhotoLibrary = [[self alloc] init];
+    });
+    return sharedPhotoLibrary;
 }
 
-@implementation photoLibrary{
-    UIViewController *_vc;
-}
-
-CLASS_SINGLETON_IMPLEMENTATION(photoLibrary)
-
-//- (void)getPhotoLibraryInSuperViewController:(UIViewController*)viewController{
-//    UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
-//    imagePicker.delegate = self;
-//    self.delegate = (id)viewController;
-//    
-//    SET_PICKER_SOURCE_TYPE(imagePicker, UIImagePickerControllerSourceTypePhotoLibrary);
-//    
-//    [viewController presentViewController:imagePicker animated:YES completion:nil];
-//}
+/**
+ *  show actionSheet
+ *
+ *  @param viewController 父视图控制器
+ */
 - (void)getPhotoLibraryInSuperViewController:(UIViewController*)viewController{
     self.delegate = (id)viewController;
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相机",@"相册", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"取消"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"相机",@"相册", nil];
     [actionSheet showInView:viewController.view];
     
     _vc = viewController;
@@ -47,7 +54,7 @@ CLASS_SINGLETON_IMPLEMENTATION(photoLibrary)
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     imagePicker.allowsEditing = YES;
     switch (buttonIndex) {
@@ -64,7 +71,7 @@ CLASS_SINGLETON_IMPLEMENTATION(photoLibrary)
 }
 #pragma mark -
 #pragma mark UIImagePickerControllerDelegate
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     // 原图
     UIImage *originalImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     // 编辑图

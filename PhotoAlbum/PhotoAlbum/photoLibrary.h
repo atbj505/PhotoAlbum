@@ -27,11 +27,16 @@
 
 @end
 
-@interface photoLibrary : NSObject<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>
+@interface photoLibrary : NSObject <UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>
 
-@property (nonatomic, weak)id<photoLibraryDelegate>delegate;
+@property (nonatomic, weak) id<photoLibraryDelegate>delegate;
 
-CLASS_SINGLETON_INTERFACE(photoLibrary)
+/**
+ *  单例方法
+ *
+ *  @return 实例变量
+ */
++ (photoLibrary *)sharephotoLibrary;
 
 /**
  *  获取图片库
